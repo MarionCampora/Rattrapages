@@ -16,61 +16,46 @@ import java.util.Scanner;
  */
 public class Screen {
 
-    private List<Building> buildingList;
-    private List<House> houseList;
-    private List<PowerSource> powerSourceList;
-    private List<List<Integer>> linkList;
+    private List<Building> buildingList = new ArrayList<>();
+    private List<PowerSource> powerSourceList = new ArrayList<>();
+    private List<List<Integer>> linkList = new ArrayList<>();
 
 
-    public boolean createPowerSource (){
+    public void createPowerSource (){
         System.out.println("Write the ID of a PowerSource: ");
         Scanner sc = new Scanner(System.in);
         int str = sc.nextInt();
-        for (int i = 0; i < buildingList.size(); i++) {
-            if(str == buildingList.get(i).getId()){
-                System.out.println("Building is already create.");
-                return false;
-            }
-        }
         Building building = new PowerSource(str);
-        buildingList.add(building);
-        powerSourceList.add((PowerSource) building);
-        return true;
+        if (addBuilding(building)){
+            addPowerSource((PowerSource) building);
+        }
     }
 
-    public void createdPowerSource (){
+    public void createAllThePowerSource(){
         createPowerSource();
         System.out.println("Do you want to create another PowerSource ? (y/n)");
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         if(str.equals("y") || str.equals("Y")){
-            createdPowerSource();
+            createAllThePowerSource();
         }
     }
 
-    public boolean createHouse(){
+    public void createHouse(){
         System.out.println("Write the ID of an House: ");
         Scanner sc = new Scanner(System.in);
         int str = sc.nextInt();
-        for (int i = 0; i < buildingList.size(); i++) {
-            if (str == buildingList.get(i).getId()){
-                System.out.println("Building is already create.");
-                return false;
-            }
-        }
         Building building = new House(str);
-        buildingList.add(building);
-        houseList.add((House) building);
-        return true;
+        addBuilding(building);
     }
 
-    public void createdHouse(){
+    public void createAllTheHouses(){
         createHouse();
         System.out.println("Do you want to create another House ? (y/n)");
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         if(str.equals("y") || str.equals("Y")){
-            createdHouse();
+            createAllTheHouses();
         }
     }
 
@@ -95,7 +80,7 @@ public class Screen {
         }
     }
 
-    public void createdLink(){
+    public void createAllTheLinks(){
         List list = new ArrayList();
         System.out.println("Write a link between to point : \nFirst point :");
         createLink(list);
@@ -110,7 +95,7 @@ public class Screen {
         Scanner sc3 = new Scanner(System.in);
         String str3 = sc3.nextLine();
         if(str3.equals("y") || str3.equals("Y")){
-            createdLink();
+            createAllTheLinks();
         }
     }
 
@@ -153,13 +138,9 @@ public class Screen {
     }
 
     public void display (){
-        buildingList = new ArrayList<>();
-        powerSourceList = new ArrayList<>();
-        houseList = new ArrayList<>();
-        linkList = new ArrayList<>();
-        createdPowerSource();
-        createdHouse();
-        createdLink();
+        createAllThePowerSource();
+        createAllTheHouses();
+        createAllTheLinks();
         algorithmChoice();
     }
 
@@ -171,4 +152,30 @@ public class Screen {
         return linkList.size();
     }
 
+    public boolean addBuilding(Building building){
+        for (int i = 0; i < buildingList.size(); i++) {
+            if(building.getId() == buildingList.get(i).getId()){
+                System.out.println("Building is already create.");
+                return false;
+            }
+        }
+        buildingList.add(building);
+        return true;
+    }
+
+    public void addPowerSource(PowerSource source){
+        powerSourceList.add(source);
+    }
+
+    public List<Building> getBuildingList() {
+        return buildingList;
+    }
+
+    public List<PowerSource> getPowerSourceList() {
+        return powerSourceList;
+    }
+
+    public List<List<Integer>> getLinkList() {
+        return linkList;
+    }
 }
