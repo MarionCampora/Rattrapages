@@ -3,6 +3,9 @@ package fr.polytech.si3.rattrapages.marion.ihm;
 import fr.polytech.si3.rattrapages.marion.building.Building;
 import fr.polytech.si3.rattrapages.marion.building.House;
 import fr.polytech.si3.rattrapages.marion.building.PowerSource;
+import fr.polytech.si3.rattrapages.marion.graph.algorithm.Algorithm;
+import fr.polytech.si3.rattrapages.marion.graph.algorithm.KruskalAvecSources;
+import fr.polytech.si3.rattrapages.marion.graph.algorithm.PrimAvecSources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,12 +130,17 @@ public class Screen {
         System.out.println("Choose an algorithm : \n- Kruskal (1)\n- Prim (2)\n- Dijkstra (3)");
         Scanner sc = new Scanner(System.in);
         int str = sc.nextInt();
+        Algorithm algorithm;
         if (str == 1){
             System.out.println("K");
+            algorithm = new KruskalAvecSources();
+            algorithm.mst();
             algorithmChoice();
         }
         else if (str == 2){
             System.out.println("P");
+            algorithm = new PrimAvecSources();
+            algorithm.mst();
             algorithmChoice();
         }
         else if (str == 3){
@@ -155,5 +163,12 @@ public class Screen {
         algorithmChoice();
     }
 
+    public int nbVertices(){
+        return buildingList.size();
+    }
+
+    public int nbEdges(){
+        return linkList.size();
+    }
 
 }
