@@ -16,9 +16,10 @@ public class PrimAvecSources extends Algorithm {
         this.edge = edge;
     }
     @Override
-    public void mst() {
+    public List<List<Integer>> mst() {
         Sort sort = new Sort();
         List<List<Integer>> sortLinkedList = sort.sortLinkedList(edge.getLinkList());
+        List<List<Integer>> primList = new ArrayList<>();
         List building = new ArrayList();
         int cptEdges = 0;
         for (int i = 0; i < edge.getPowerSourceList().size(); i++) {
@@ -28,18 +29,19 @@ public class PrimAvecSources extends Algorithm {
                     building.add(first.get(0));
                     building.add(first.get(1));
                     cptEdges = 2;
-                    System.out.println(first);
+                    primList.add(first);
                 }
             }
         }
         if (cptEdges != 0) {
             while (building.size() < edge.getBuildingList().size() && sortLinkedList.size() > 0) {
-                createTheGraph(sortLinkedList, building);
+                createTheGraph(sortLinkedList, building, primList);
             }
         }
+        return primList;
     }
 
-    public void createTheGraph(List<List<Integer>> sortLinkedList, List building){
+    public void createTheGraph(List<List<Integer>> sortLinkedList, List building, List<List<Integer>> primList){
         for (int i = 0; i < sortLinkedList.size(); i++) {
             int cycle = 0;
             int newBuilding = 0;
@@ -55,9 +57,9 @@ public class PrimAvecSources extends Algorithm {
             }
             if (cycle == 1) {
                 List<Integer> first = sortLinkedList.remove(i);
-                System.out.println(first);
+                primList.add(first);
                 building.add(newBuilding);
-                createTheGraph(sortLinkedList, building);
+                createTheGraph(sortLinkedList, building, primList);
             }
         }
     }

@@ -116,19 +116,21 @@ public class Edge {
         Algorithm algorithm;
         if (str == 1){
             System.out.println("K");
-            algorithm = new KruskalAvecSources();
-            algorithm.mst();
-            algorithmChoice(edge);
+            algorithm = new KruskalAvecSources(edge);
+            List<List<Integer>> list = algorithm.mst();
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i));
+            }
         }
         else if (str == 2){
-            System.out.println("P");
             algorithm = new PrimAvecSources(edge);
-            algorithm.mst();
-            algorithmChoice(edge);
+            List<List<Integer>> list = algorithm.mst();
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i));
+            }
         }
         else if (str == 3){
             System.out.println("D");
-            algorithmChoice(edge);
         }
         else {
             System.out.println("ok");
