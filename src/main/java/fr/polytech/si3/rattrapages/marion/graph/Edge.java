@@ -110,7 +110,7 @@ public class Edge {
         return true;
     }
 
-    public void algorithmChoice(){
+    public void algorithmChoice(Edge edge){
         System.out.println("Choose an algorithm : \n- Kruskal (1)\n- Prim (2)\n- Dijkstra (3)");
         int str = readAnInteger();
         Algorithm algorithm;
@@ -118,17 +118,17 @@ public class Edge {
             System.out.println("K");
             algorithm = new KruskalAvecSources();
             algorithm.mst();
-            algorithmChoice();
+            algorithmChoice(edge);
         }
         else if (str == 2){
             System.out.println("P");
-            algorithm = new PrimAvecSources();
+            algorithm = new PrimAvecSources(edge);
             algorithm.mst();
-            algorithmChoice();
+            algorithmChoice(edge);
         }
         else if (str == 3){
             System.out.println("D");
-            algorithmChoice();
+            algorithmChoice(edge);
         }
         else {
             System.out.println("ok");

@@ -13,7 +13,7 @@ public class Screen {
         edge.createAllThePowerSource();
         edge.createAllTheHouses();
         edge.createAllTheLinks();
-        edge.algorithmChoice();
+        edge.algorithmChoice(edge);
 
     }
 
