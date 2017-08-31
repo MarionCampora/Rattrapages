@@ -49,7 +49,6 @@ public class PrimAvecSources extends Algorithm {
             int newBuilding = 0;
             boolean isLinked = true;
             for (int j = 0; j < building.size(); j++) {
-                //makeAForest(sortLinkedList, i, building, isLinked, primList);
                 if (sortLinkedList.get(i).get(1) == building.get(j)) {
                     cycle++;
                     newBuilding = sortLinkedList.get(i).get(0);
@@ -66,37 +65,27 @@ public class PrimAvecSources extends Algorithm {
                 createTheGraph(sortLinkedList, building, primList);
             }
             if (cycle == 0 && edge.getPowerSourceList().size() != 0) {
-                isLinked = false;
-                makeAForest(sortLinkedList, i, building, isLinked, primList);
+                makeAForest(sortLinkedList, i, building, primList);
             }
         }
     }
 
-    public boolean makeAForest(List<List<Integer>> sortLinkedList, int i, List building, boolean isLinked, List<List<Integer>> primList) {
+    public boolean makeAForest(List<List<Integer>> sortLinkedList, int i, List building, List<List<Integer>> primList) {
         for (int j = 0; j < edge.getPowerSourceList().size(); j++) {
             if (sortLinkedList.get(i).get(0) == edge.getPowerSourceList().get(j).getId()) {
-                if (isLinked) {
-                    List<Integer> first = sortLinkedList.remove(i);
-                    building.add(first.get(0));
-                } else {
-                    List<Integer> first = sortLinkedList.remove(i);
-                    building.add(first.get(0));
-                    building.add(first.get(1));
-                    primList.add(first);
-                    createTheGraph(sortLinkedList, building, primList);
-                }
+                List<Integer> first = sortLinkedList.remove(i);
+                building.add(first.get(0));
+                building.add(first.get(1));
+                primList.add(first);
+                createTheGraph(sortLinkedList, building, primList);
                 return false;
-            } else if (sortLinkedList.get(i).get(1) == edge.getPowerSourceList().get(j).getId()) {
-                if (isLinked) {
-                    List<Integer> first = sortLinkedList.remove(i);
-                    building.add(first.get(1));
-                } else {
-                    List<Integer> first = sortLinkedList.remove(i);
-                    building.add(first.get(1));
-                    building.add(first.get(0));
-                    primList.add(first);
-                    createTheGraph(sortLinkedList, building, primList);
-                }
+            }
+            else if (sortLinkedList.get(i).get(1) == edge.getPowerSourceList().get(j).getId()) {
+                List<Integer> first = sortLinkedList.remove(i);
+                building.add(first.get(1));
+                building.add(first.get(0));
+                primList.add(first);
+                createTheGraph(sortLinkedList, building, primList);
                 return false;
             }
         }
