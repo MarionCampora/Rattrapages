@@ -114,6 +114,7 @@ public class Edge {
         System.out.println("Choose an algorithm : \n- Kruskal (1)\n- Prim (2)\n- Dijkstra (3)");
         int str = readAnInteger();
         Algorithm algorithm;
+        System.out.println("The choosen Edges are :");
         if (str == 1){
             System.out.println("K");
             algorithm = new KruskalAvecSources(edge);
