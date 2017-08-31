@@ -12,6 +12,8 @@ import java.util.List;
 public class KruskalAvecSources extends Algorithm{
 
     private Edge edge;
+    private int fathers[] = new int[1000];
+    private int mstEdges = 0;
 
     public KruskalAvecSources (Edge edge){
         this.edge = edge;
@@ -21,62 +23,39 @@ public class KruskalAvecSources extends Algorithm{
     public List<List<Integer>> mst() {Sort sort = new Sort();
         List<List<Integer>> sortLinkedList = sort.sortLinkedList(edge.getLinkList());
         List<List<Integer>> kruskalList = new ArrayList<>();
-        List<Integer> first = sortLinkedList.remove(0);
-        List building = new ArrayList();
-        kruskalList.add(first);
-        building.add(first.get(0));
-        building.add(first.get(1));
-        while (building.size() < edge.getBuildingList().size() && sortLinkedList.size() > 0) {
-            createTheGraph(sortLinkedList, building, kruskalList);
+        int cpt = 0;
+        for (int i = 0; i < 1000; i++) {
+            fathers[i] = i;
+        }
+        while (mstEdges <= edge.nbEdges()|| sortLinkedList.size() > cpt) {
+            createdTheGraph(sortLinkedList, kruskalList, cpt, fathers);
+            cpt ++;
         }
         return kruskalList;
     }
 
-    private void createTheGraph (List<List<Integer>> sortLinkedList, List building, List<List<Integer>> kruskalList){
-            int cycle = 0;
-            for (int j = 0; j < building.size(); j++) {
-                if (sortLinkedList.get(0).get(0) == building.get(j)){
-                    for (int k = j; k < building.size(); k++) {
-                        if (sortLinkedList.get(0).get(1) == building.get(k)){
-                            cycle = 3;
-                        }
-                        else {
-                            cycle = 1;
-                        }
-                    }
-                }
-                if (sortLinkedList.get(0).get(1) == building.get(j)){
-                    for (int k = j; k < building.size(); k++) {
-                        if (sortLinkedList.get(0).get(0) == building.get(k)){
-                            cycle = 3;
-                        }
-                        else {
-                            cycle = 2;
-                        }
-                    }
-                }
-            }
-            if (cycle == 0){
-                building.add(sortLinkedList.get(0).get(0));
-                building.add(sortLinkedList.get(0).get(1));
-                kruskalList.add(sortLinkedList.remove(0));
-                System.out.println("0");
-            }
-            else if (cycle == 1){
-                building.add(sortLinkedList.get(0).get(1));
-                kruskalList.add(sortLinkedList.remove(0));
-                System.out.println("1");
-            }
-            else if (cycle == 2){
-                building.add(sortLinkedList.get(0).get(0));
-                kruskalList.add(sortLinkedList.remove(0));
-                System.out.println("2");
-            }
-            else {
-                sortLinkedList.remove(0);
-                System.out.println("3");
-            }
+    private int find(int x){
+        if (fathers[x] == x){
+            return x;
         }
+        return find(fathers[x]);
+    }
 
+    private void union(int root1, int root2){
+        if (fathers[root1] <= fathers[root2]){
+            fathers[root2] = root1;
+        }
+        else {
+            fathers[root1] = root2;
+        }
+    }
+    
+    private void createdTheGraph (List<List<Integer>> sortLinkedList, List<List<Integer>> kruskalList, int j, int[] fathers){
+        if (find(fathers[sortLinkedList.get(j).get(0)]) != find(fathers[sortLinkedList.get(j).get(1)]) || find(fathers[sortLinkedList.get(j).get(0)]) == -1 || find(fathers[sortLinkedList.get(j).get(1)]) == -1){
+            union(fathers[sortLinkedList.get(j).get(0)], fathers[sortLinkedList.get(j).get(1)]);
+            kruskalList.add(sortLinkedList.get(j));
+            mstEdges++;
+        }
+    }
 
 }
