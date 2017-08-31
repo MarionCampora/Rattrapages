@@ -42,11 +42,17 @@ public class KruskalAvecSources extends Algorithm{
     }
 
     private void union(int root1, int root2){
-        if (fathers[root1] <= fathers[root2]){
+        if (fathers[root1] >= fathers[root2]){
             fathers[root2] = root1;
+            if (fathers[root1] == -1){
+                fathers[root1] = root1;
+            }
         }
         else {
             fathers[root1] = root2;
+            if (fathers[root2] == -1){
+                fathers[root2] = root2;
+            }
         }
     }
     
