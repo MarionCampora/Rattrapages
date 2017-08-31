@@ -18,7 +18,7 @@ public class Building {
         return id;
     }
 
-    protected void addBuilding (Building building){
+    public void addBuilding (Building building){
         idList.add(building.getId());
         buildingList.add(building);
     }

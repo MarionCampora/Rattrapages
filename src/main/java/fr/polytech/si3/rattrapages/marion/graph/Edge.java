@@ -176,4 +176,8 @@ public class Edge {
     public void removeFromPowerSourceList (int i){
         powerSourceList.remove(i);
     }
+
+    public void addLinkList(List<Integer> e) {
+        linkList.add(e);
+    }
 }
