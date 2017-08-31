@@ -14,7 +14,6 @@ public class Screen {
         edge.createAllTheHouses();
         edge.createAllTheLinks();
         edge.algorithmChoice(edge);
-
     }
 
 

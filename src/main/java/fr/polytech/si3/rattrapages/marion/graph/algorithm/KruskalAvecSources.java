@@ -28,7 +28,7 @@ public class KruskalAvecSources extends Algorithm{
             fathers[i] = i;
         }
         while (mstEdges <= edge.nbEdges()|| sortLinkedList.size() > cpt) {
-            createdTheGraph(sortLinkedList, kruskalList, cpt, fathers);
+            createTheGraph(sortLinkedList, kruskalList, cpt, fathers);
             cpt ++;
         }
         return kruskalList;
@@ -79,7 +79,7 @@ public class KruskalAvecSources extends Algorithm{
 
         }
 
-        if (isRoot1PowerSource == true && isRoot2PowerSource == true){
+        if (isRoot1PowerSource&& isRoot2PowerSource){
             return false;
         }
         else {
@@ -87,7 +87,7 @@ public class KruskalAvecSources extends Algorithm{
         }
     }
 
-    private void createdTheGraph (List<List<Integer>> sortLinkedList, List<List<Integer>> kruskalList, int j, int[] fathers){
+    private void createTheGraph(List<List<Integer>> sortLinkedList, List<List<Integer>> kruskalList, int j, int[] fathers){
         if (find(fathers[sortLinkedList.get(j).get(0)]) != find(fathers[sortLinkedList.get(j).get(1)]) || find(fathers[sortLinkedList.get(j).get(0)]) == -1 || find(fathers[sortLinkedList.get(j).get(1)]) == -1){
             if(union(fathers[sortLinkedList.get(j).get(0)], fathers[sortLinkedList.get(j).get(1)])) {
                     kruskalList.add(sortLinkedList.get(j));

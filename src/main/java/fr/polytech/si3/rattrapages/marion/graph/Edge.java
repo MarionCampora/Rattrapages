@@ -172,4 +172,8 @@ public class Edge {
     public List<List<Integer>> getLinkList() {
         return linkList;
     }
+
+    public void removeFromPowerSourceList (int i){
+        powerSourceList.remove(i);
+    }
 }

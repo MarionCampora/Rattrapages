@@ -10,6 +10,9 @@ public class Sort {
 
     public List<List<Integer>> sortLinkedList (List<List<Integer>> list){
         List<List<Integer>> sortList = new ArrayList<>();
+        if (list.size() <= 1){
+            return list;
+        }
         while(list.size()!=0) {
             Integer first = list.get(0).get(2);
             int index = 0;
