@@ -116,7 +116,6 @@ public class Edge {
         Algorithm algorithm;
         System.out.println("The choosen Edges are :");
         if (str == 1){
-            System.out.println("K");
             algorithm = new KruskalAvecSources(edge);
             List<List<Integer>> list = algorithm.mst();
             for (int i = 0; i < list.size(); i++) {
@@ -130,11 +129,8 @@ public class Edge {
                 System.out.println(list.get(i));
             }
         }
-        else if (str == 3){
+        else if (str == 3) {
             System.out.println("D");
-        }
-        else {
-            System.out.println("ok");
         }
     }
 

@@ -43,18 +43,15 @@ public class KruskalAvecSources extends Algorithm{
 
     private boolean union(int root1, int root2){
         int cpt = 0;
-        int powerSource = -1;
         boolean isRoot1PowerSource = false;
         boolean isRoot2PowerSource = false;
         for (int i = 0; i < edge.getPowerSourceList().size(); i++) {
             if (root1 == edge.getPowerSourceList().get(i).getId()){
                 cpt = 1;
-                powerSource = root1;
                 isRoot1PowerSource = true;
             }
             if (root2 == edge.getPowerSourceList().get(i).getId()){
                 cpt = 2;
-                powerSource = root2;
                 isRoot2PowerSource = true;
             }
         }
@@ -72,10 +69,10 @@ public class KruskalAvecSources extends Algorithm{
                 }
             }
             if (cpt == 1) {
-                fathers[root2] = powerSource;
+                fathers[root2] = root1;
             }
             if (cpt == 2) {
-                fathers[root1] = powerSource;
+                fathers[root1] = root2;
 
         }
 

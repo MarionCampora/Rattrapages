@@ -140,7 +140,7 @@ public class EdgeTest {
 
     @Test
     public void testIfAPowerSourceIsCreated(){
-        //TO DO
+
     }
 
     @Test
