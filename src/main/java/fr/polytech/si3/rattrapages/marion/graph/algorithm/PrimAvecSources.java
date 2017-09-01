@@ -15,6 +15,7 @@ public class PrimAvecSources extends Algorithm {
         this.edge = edge;
     }
 
+
     @Override
     public List<List<Integer>> mst() {
         Sort sort = new Sort();
@@ -30,7 +31,7 @@ public class PrimAvecSources extends Algorithm {
                     building.add(first.get(1));
                     cptEdges = 2;
                     primList.add(first);
-                    edge.removeFromPowerSourceList(i);
+
                 }
             }
         }
@@ -46,8 +47,8 @@ public class PrimAvecSources extends Algorithm {
         for (int i = 0; i < sortLinkedList.size(); i++) {
             int cycle = 0;
             int newBuilding = 0;
-            boolean isLinked = true;
             for (int j = 0; j < building.size(); j++) {
+
                 if (sortLinkedList.get(i).get(1) == building.get(j)) {
                     cycle++;
                     newBuilding = sortLinkedList.get(i).get(0);

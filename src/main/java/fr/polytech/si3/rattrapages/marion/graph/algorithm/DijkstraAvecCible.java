@@ -4,6 +4,7 @@ import fr.polytech.si3.rattrapages.marion.graph.Edge;
 import fr.polytech.si3.rattrapages.marion.graph.Sort;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,12 +12,13 @@ import java.util.List;
  */
 public class DijkstraAvecCible extends Algorithm {
     private int building;
+    private List<List<Integer>> dijkstraList;
+    private int powerSource;
     private int distanceFromStart[] = new int[1000];
     private int isNew[] = new int[1000];
     private int isNewAdjacent[] = new int[1000];
     private int isNewWeight[] = new int[1000];
     private List<Integer> buildingList;
-    private List<List<Integer>> dijkstraList;
     private int totalWeight;
     private List<Integer> allTheWeight = new ArrayList<>();
     List<List<List<Integer>>> allTheDijkstraList = new ArrayList<>();
@@ -46,7 +48,6 @@ public class DijkstraAvecCible extends Algorithm {
     @Override
     public List<List<Integer>> mst() {
         createAllTheTable();
-        dijkstraList = new ArrayList<>();
         Sort sort = new Sort();
         List<List<Integer>> sortLinkedList = sort.sortLinkedList(edge.getLinkList());
         buildingList = new ArrayList<>();
@@ -54,7 +55,7 @@ public class DijkstraAvecCible extends Algorithm {
         while (edge.getPowerSourceList().size() > 0) {
             totalWeight = 0;
             dijkstraList = new ArrayList<>();
-            int powerSource = findTheFirst(sortLinkedList, cptEdges);
+            powerSource = findTheFirst(sortLinkedList, cptEdges, dijkstraList);
             if (edge.getBuildingList().size() == 2){
                 allTheWeight.add(totalWeight);
                 allTheDijkstraList.add(dijkstraList);
@@ -67,18 +68,48 @@ public class DijkstraAvecCible extends Algorithm {
                 }
             }
         }
-        return allTheDijkstraList.get(sort.sortWeight(allTheWeight));
+        return path(allTheDijkstraList.get(sort.sortWeight(allTheWeight)));
 
     }
 
-    private int findTheFirst(List<List<Integer>> sortLinkedList, int cptEdges){
+    private List<List<Integer>> path(List<List<Integer>> dijList){
+        List<List<Integer>> finalDijList = new ArrayList<>();
+        int size = dijList.size();
+        int powerSource = dijList.get(0).get(0);
+        finalDijList.add(dijList.get(size-1));
+        int current = building;
+        for (int j = size-1; j >= 0 ; j--) {
+            if (current == dijList.get(j).get(0)){
+                current = dijList.get(j).get(1);
+                finalDijList.add(dijList.get(j));
+            }
+            else if (current == dijList.get(j).get(1)){
+                current = dijList.get(j).get(0);
+                finalDijList.add(dijList.get(j));
+            }
+            if (current == powerSource){
+                j = -1;
+            }
+        }
+        Collections.reverse(finalDijList);
+        finalDijList.remove(finalDijList.size()-1);
+        return finalDijList;
+    }
+
+    private int findTheFirst(List<List<Integer>> sortLinkedList, int cptEdges, List<List<Integer>> dijkstraList){
         int powerSource = 0;
         for (int j = 0; j < sortLinkedList.size(); j++) {
             for (int i = 0; i < edge.getPowerSourceList().size(); i++) {
                 if (((edge.getPowerSourceList().get(i).getId() == sortLinkedList.get(j).get(0) || edge.getPowerSourceList().get(i).getId() == sortLinkedList.get(j).get(1))) && cptEdges == 0) {
                     List<Integer> first = sortLinkedList.remove(j);
-                    buildingList.add(first.get(0));
-                    buildingList.add(first.get(1));
+                    if (edge.getPowerSourceList().get(i).getId() == sortLinkedList.get(j).get(0)){
+                        buildingList.add(first.get(0));
+                        buildingList.add(first.get(1));
+                    }
+                    else {
+                        buildingList.add(first.get(1));
+                        buildingList.add(first.get(0));
+                    }
                     cptEdges = 2;
                     dijkstraList.add(first);
                     powerSource = edge.removeFromPowerSourceList(i).getId();
