@@ -115,9 +115,9 @@ public class Edge {
         System.out.println("Choose an algorithm : \n- Kruskal (1)\n- Prim (2)\n- Dijkstra (3)");
         int str = readAnInteger();
         Algorithm algorithm;
-        System.out.println("The choosen Edges are :");
         if (str == 1){
             algorithm = new KruskalAvecSources(edge);
+            System.out.println("The choosen Edges are :");
             List<List<Integer>> list = algorithm.mst();
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i));
@@ -125,6 +125,7 @@ public class Edge {
         }
         else if (str == 2){
             algorithm = new PrimAvecSources(edge);
+            System.out.println("The choosen Edges are :");
             List<List<Integer>> list = algorithm.mst();
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i));
@@ -134,6 +135,7 @@ public class Edge {
             System.out.println("Write the number of the target : ");
             int buildingId = readAnInteger();
             algorithm = new DijkstraAvecCible(edge, buildingId);
+            System.out.println("The choosen Edges are :");
             List<List<Integer>> list = algorithm.mst();
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i));
