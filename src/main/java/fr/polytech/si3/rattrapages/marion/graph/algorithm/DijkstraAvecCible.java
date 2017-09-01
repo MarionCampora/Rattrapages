@@ -31,17 +31,9 @@ public class DijkstraAvecCible extends Algorithm {
     public void createAllTheTable(){
         for (int i = 0; i < 1000; i++) {
             fathers[i] = i;
-        }
-        for (int i = 0; i < 1000; i++) {
             distanceFromStart[i] = -1;
-        }
-        for (int i = 0; i < 1000; i++) {
             isNew[i] = 0;
-        }
-        for (int i = 0; i < 1000; i++) {
             isNewAdjacent[i] = -1;
-        }
-        for (int i = 0; i < 1000; i++) {
             isNewWeight[i] = -1;
         }
     }
