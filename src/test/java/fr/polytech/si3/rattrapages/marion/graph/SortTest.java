@@ -110,4 +110,54 @@ public class SortTest {
         List list8 = sort.sortLinkedList(list);
         assertEquals(list8, list7);
     }
+
+    @Test
+    public void testIfTheFirstIsTheSmaller(){
+        List<Integer> list31 = list3;
+        list31.add(4);
+        list31.add(52);
+        list31.add(2);
+        assertEquals(0, sort.sortWeight(list31));
+    }
+
+    @Test
+    public void testForSimpleWeight(){
+        List<Integer> list31 = new ArrayList<>();
+        list31.add(4);
+        list31.add(52);
+        list31.add(2);
+        list31.add(12);
+        list31.add(1);
+        list31.add(45);
+        list31.add(42);
+        assertEquals(4, sort.sortWeight(list31));
+    }
+
+    @Test
+    public void testIfTheLastIsTheSmaller(){
+        List<Integer> list31 = new ArrayList<>();
+        list31.add(4);
+        list31.add(52);
+        list31.add(2);
+        list31.add(12);
+        list31.add(1);
+        list31.add(45);
+        list31.add(42);
+        list31.add(0);
+        assertEquals(7, sort.sortWeight(list31));
+    }
+
+    @Test
+    public void testWithSomeNegativWeight(){
+        List<Integer> list31 = new ArrayList<>();
+        list31.add(4);
+        list31.add(52);
+        list31.add(-2);
+        list31.add(12);
+        list31.add(1);
+        list31.add(-45);
+        list31.add(42);
+        list31.add(0);
+        assertEquals(5, sort.sortWeight(list31));
+    }
 }

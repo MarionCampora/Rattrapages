@@ -10,7 +10,6 @@ import java.util.List;
  * @author Marion
  */
 public class PrimAvecSources extends Algorithm {
-    private Edge edge;
 
     public PrimAvecSources(Edge edge) {
         this.edge = edge;

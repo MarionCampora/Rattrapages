@@ -28,4 +28,22 @@ public class Sort {
         }
         return sortList;
     }
+
+    /**
+     *
+     * @param list
+     * @return the position of the smaller weight
+     */
+    public int sortWeight (List<Integer> list){
+        int smaller = list.get(0);
+        int position = 0;
+        if (list.size() > 1){
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i) < smaller){
+                position = i;
+                smaller = list.get(i);
+            }
+        }}
+        return position;
+    }
 }

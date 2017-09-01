@@ -4,6 +4,7 @@ import fr.polytech.si3.rattrapages.marion.building.Building;
 import fr.polytech.si3.rattrapages.marion.building.House;
 import fr.polytech.si3.rattrapages.marion.building.PowerSource;
 import fr.polytech.si3.rattrapages.marion.graph.algorithm.Algorithm;
+import fr.polytech.si3.rattrapages.marion.graph.algorithm.DijkstraAvecCible;
 import fr.polytech.si3.rattrapages.marion.graph.algorithm.KruskalAvecSources;
 import fr.polytech.si3.rattrapages.marion.graph.algorithm.PrimAvecSources;
 
@@ -130,7 +131,13 @@ public class Edge {
             }
         }
         else if (str == 3) {
-            System.out.println("D");
+            System.out.println("Write the number of the target : ");
+            int buildingId = readAnInteger();
+            algorithm = new DijkstraAvecCible(edge, buildingId);
+            List<List<Integer>> list = algorithm.mst();
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i));
+            }
         }
     }
 
@@ -169,8 +176,8 @@ public class Edge {
         return linkList;
     }
 
-    public void removeFromPowerSourceList (int i){
-        powerSourceList.remove(i);
+    public PowerSource removeFromPowerSourceList (int i){
+        return powerSourceList.remove(i);
     }
 
     public void addLinkList(List<Integer> e) {
