@@ -38,7 +38,7 @@ public class DijkstraAvecCible extends Algorithm {
         }
     }
     @Override
-    public List<List<Integer>> mst() {
+    public List<List<Integer>> fcm() {
         createAllTheTable();
         Sort sort = new Sort();
         List<List<Integer>> sortLinkedList = sort.sortLinkedList(edge.getLinkList());

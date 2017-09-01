@@ -91,7 +91,7 @@ public class TestPrimAvecSources {
         list.add(list2);
         list.add(list1);
         list.add(list5);
-        List<List<Integer>> primList = primAvecSources.mst();
+        List<List<Integer>> primList = primAvecSources.fcm();
         assertEquals(primList, list);
     }
 
@@ -109,7 +109,7 @@ public class TestPrimAvecSources {
         list.add(list6);
         list.add(list1);
         list.add(list5);
-        List<List<Integer>> primList = primAvecSources.mst();
+        List<List<Integer>> primList = primAvecSources.fcm();
         assertEquals(primList, list);
     }
 

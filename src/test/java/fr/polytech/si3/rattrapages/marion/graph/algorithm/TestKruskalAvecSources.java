@@ -81,7 +81,7 @@ public class TestKruskalAvecSources {
         list.add(list5);
         list.add(list2);
         list.add(list1);
-        List<List<Integer>> kruskalList =kruskalAvecSources.mst();
+        List<List<Integer>> kruskalList =kruskalAvecSources.fcm();
         assertEquals(kruskalList, list);
     }
 
@@ -99,7 +99,7 @@ public class TestKruskalAvecSources {
         list.add(list5);
         list.add(list6);
         list.add(list1);
-        List<List<Integer>> kruskalList =kruskalAvecSources.mst();
+        List<List<Integer>> kruskalList =kruskalAvecSources.fcm();
         assertEquals(kruskalList, list);
     }
 
@@ -118,7 +118,7 @@ public class TestKruskalAvecSources {
         list.add(list5);
         list.add(list6);
         list.add(list1);
-        List<List<Integer>> kruskalList =kruskalAvecSources.mst();
+        List<List<Integer>> kruskalList =kruskalAvecSources.fcm();
         assertEquals(kruskalList, list);
     }
 

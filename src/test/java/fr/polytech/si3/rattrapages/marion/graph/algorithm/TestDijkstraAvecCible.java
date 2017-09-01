@@ -107,8 +107,8 @@ public class TestDijkstraAvecCible {
         list.add(list3);
         list.add(list10);
         list.add(list11);
-        List<List<Integer>> dijList = dijkstraAvecCible.mst();
-        assertEquals(dijkstraAvecCible.mst(), list);
+        List<List<Integer>> dijList = dijkstraAvecCible.fcm();
+        assertEquals(dijkstraAvecCible.fcm(), list);
     }
 
 

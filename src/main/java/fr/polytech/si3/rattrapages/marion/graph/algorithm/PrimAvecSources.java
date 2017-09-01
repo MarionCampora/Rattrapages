@@ -17,7 +17,7 @@ public class PrimAvecSources extends Algorithm {
 
 
     @Override
-    public List<List<Integer>> mst() {
+    public List<List<Integer>> fcm() {
         Sort sort = new Sort();
         List<List<Integer>> sortLinkedList = sort.sortLinkedList(edge.getLinkList());
         List<List<Integer>> primList = new ArrayList<>();

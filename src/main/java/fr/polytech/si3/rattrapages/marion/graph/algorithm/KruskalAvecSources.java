@@ -19,7 +19,7 @@ public class KruskalAvecSources extends Algorithm{
     }
 
     @Override
-    public List<List<Integer>> mst() {Sort sort = new Sort();
+    public List<List<Integer>> fcm() {Sort sort = new Sort();
         List<List<Integer>> sortLinkedList = sort.sortLinkedList(edge.getLinkList());
         List<List<Integer>> kruskalList = new ArrayList<>();
         int cpt = 0;

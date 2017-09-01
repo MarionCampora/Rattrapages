@@ -14,7 +14,7 @@ public abstract class Algorithm {
 
     protected int fathers[] = new int[1000];
 
-    public abstract List<List<Integer>> mst();
+    public abstract List<List<Integer>> fcm();
 
     protected int find(int x){
         if (fathers[x] == x){
