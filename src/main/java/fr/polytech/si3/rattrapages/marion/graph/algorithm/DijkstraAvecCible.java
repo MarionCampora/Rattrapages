@@ -220,5 +220,11 @@ public class DijkstraAvecCible extends Algorithm {
         return smallerPath;
     }
 
+    public void setBuilding(int building) {
+        this.building = building;
+    }
 
+    public int getBuilding() {
+        return building;
+    }
 }

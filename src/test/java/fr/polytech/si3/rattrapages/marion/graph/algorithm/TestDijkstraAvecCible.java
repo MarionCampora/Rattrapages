@@ -14,9 +14,10 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Marion
  */
-public class TestPrimAvecSources {
-    PrimAvecSources primAvecSources;
+public class TestDijkstraAvecCible {
+    DijkstraAvecCible dijkstraAvecCible;
     Edge edge;
+    List<Integer> list9 = new ArrayList<>();
     List<Integer> list8 = new ArrayList<>();
     List<Integer> list7 = new ArrayList<>();
     List<Integer> list6 = new ArrayList<>();
@@ -29,11 +30,10 @@ public class TestPrimAvecSources {
     Building building3 = new Building(3);
     Building building4 = new Building(4);
 
-
     @Before
     public void setUp(){
         edge = new Edge();
-        primAvecSources = new PrimAvecSources(edge);
+        dijkstraAvecCible = new DijkstraAvecCible(edge, 4);
         PowerSource powerSource = new PowerSource(1);
         PowerSource powerSource2 = new PowerSource(15);
         edge.addPowerSource(powerSource);
@@ -76,27 +76,18 @@ public class TestPrimAvecSources {
         list8.add(2);
         list8.add(3);
 
+        list9.add(3);
+        list9.add(2);
+        list9.add(2);
     }
 
     @Test
-    public void testPrimSimple(){
-        edge.addLinkList(list1);
-        edge.addLinkList(list2);
-        edge.addLinkList(list3);
-        edge.addLinkList(list4);
-        edge.addLinkList(list5);
-        edge.addLinkList(list8);
-        List<List<Integer>> list = new ArrayList<>();
-        list.add(list3);
-        list.add(list2);
-        list.add(list1);
-        list.add(list5);
-        List<List<Integer>> primList = primAvecSources.mst();
-        assertEquals(primList, list);
+    public void testIsItTheGoodTarget(){
+        assertEquals(dijkstraAvecCible.getBuilding(), 4);
     }
 
     @Test
-    public void testPrimForest(){
+    public void testDijForest(){
         edge.addLinkList(list1);
         edge.addLinkList(list2);
         edge.addLinkList(list3);
@@ -105,13 +96,21 @@ public class TestPrimAvecSources {
         edge.addLinkList(list6);
         edge.addLinkList(list8);
         List<List<Integer>> list = new ArrayList<>();
+        List<Integer> list10 = new ArrayList<>();
+        List<Integer> list11 = new ArrayList<>();
+        list10.add(3);
+        list10.add(5);
+        list10.add(4);
+        list11.add(4);
+        list11.add(3);
+        list11.add(1);
         list.add(list3);
-        list.add(list6);
-        list.add(list1);
-        list.add(list5);
-        List<List<Integer>> primList = primAvecSources.mst();
-        assertEquals(primList, list);
+        list.add(list10);
+        list.add(list11);
+        List<List<Integer>> dijList = dijkstraAvecCible.mst();
+        assertEquals(dijkstraAvecCible.mst(), list);
     }
 
-}
 
+
+}
